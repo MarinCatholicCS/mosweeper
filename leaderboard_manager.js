@@ -39,9 +39,18 @@ LeaderboardManager.prototype.validateSubmission = function (name, time) {
 };
 
 // Submit a score to the leaderboard
-LeaderboardManager.prototype.submitScore = function (name, time, callback) {
+LeaderboardManager.prototype.submitScore = function (name, time, now, startTime, timeStamps, mines, callback) {
     var self = this;
-
+    console.log((now - startTime) / 1000);
+    console.log(JSON.stringify({
+        name: name,
+        time: time,
+        timestamp: now,
+        startTime,
+        timeStamps,
+        mines: mines
+    }));
+    console.log(timeStamps.length);
     // Validate before submitting
     var validation = this.validateSubmission(name, time);
     if (!validation.valid) {
@@ -56,11 +65,6 @@ LeaderboardManager.prototype.submitScore = function (name, time, callback) {
         this.recentSubmissions[name] = [];
     }
     this.recentSubmissions[name].push(Date.now());
-    console.log(JSON.stringify({
-        name: name,
-        time: time,
-        timestamp: Date.now()
-    }));
 
     fetch(this.scriptUrl, {
         method: 'POST',
@@ -71,7 +75,10 @@ LeaderboardManager.prototype.submitScore = function (name, time, callback) {
         body: JSON.stringify({
             name: name,
             time: time,
-            timestamp: Date.now()
+            timestamp: now,
+            startTime,
+            timeStamps,
+            mines
         })
 
     })
@@ -103,7 +110,7 @@ LeaderboardManager.prototype.getLeaderboard = function (callback) {
 };
 
 // Show leaderboard modal when game ends
-LeaderboardManager.prototype.showGameOverModal = function (won, finalTime) {
+LeaderboardManager.prototype.showGameOverModal = function (won, finalTime, now, startTime, timeStamps, mines) {
     var self = this;
 
     var container = document.querySelector('.container');
@@ -176,7 +183,7 @@ LeaderboardManager.prototype.showGameOverModal = function (won, finalTime) {
             messageEl.style.color = '#6b4e31';
             submitBtn.disabled = true;
 
-            self.submitScore(name, finalTime, function (error, result) {
+            self.submitScore(name, finalTime, now, startTime, timeStamps, mines, function (error, result) {
                 if (error) {
                     messageEl.textContent = 'Failed: ' + error.message;
                     messageEl.style.color = '#c94a3a';
@@ -211,7 +218,6 @@ LeaderboardManager.prototype.showGameOverModal = function (won, finalTime) {
 // Create permanent leaderboard display at bottom of page
 LeaderboardManager.prototype.createPermanentLeaderboard = function () {
     var self = this;
-    console.log("leader perm");
     // Create permanent leaderboard HTML
     var leaderboardHTML = `
     <div class="permanent-leaderboard">

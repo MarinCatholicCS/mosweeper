@@ -1,7 +1,7 @@
 // Game configuration
 const ROWS = 14;
 const COLS = 18;
-const MINES = 4;
+const MINES = 5;
 
 const API_URL = 'https://script.google.com/macros/s/AKfycbxGmBC7asHnpngfgSwQqtxig3notnM4CxTBhTQlUh5duSOHidgBKPSnvCg4ha0oC71GrQ/exec';
 
@@ -20,6 +20,7 @@ let gameStarted = false;
 let gameOver = false;
 let startTime = null;
 let timerInterval = null;
+let timeStamps = [];
 
 // DOM elements
 const boardElement = document.getElementById('board');
@@ -41,6 +42,7 @@ function initGame() {
     gameStarted = false;
     gameOver = false;
     startTime = null;
+    timeStamps = [];
 
     if (timerInterval) {
         clearInterval(timerInterval);
@@ -227,6 +229,7 @@ function revealCell(row, col) {
 
     cell.isRevealed = true;
     revealedCells++;
+    timeStamps.push(Date.now());
 
     const cellElement = boardElement.querySelector(`[data-row="${row}"][data-col="${col}"]`);
     updateCellDisplay(cellElement, row, col);
@@ -270,7 +273,10 @@ function endGame(won) {
         clearInterval(timerInterval);
     }
 
-    const finalTime = ((Date.now() - startTime) / 1000);
+    const now = Date.now();
+
+    const finalTime = ((now - startTime) / 1000);
+    timeStamps.push(now);
 
     // Reveal all mines
     for (let row = 0; row < ROWS; row++) {
@@ -292,7 +298,7 @@ function endGame(won) {
     // Show game over overlay briefly, then modal
     setTimeout(() => {
         if (leaderboardManager) {
-            leaderboardManager.showGameOverModal(won, finalTime);
+            leaderboardManager.showGameOverModal(won, finalTime, now, startTime, timeStamps, MINES);
         }
     }, 300);
 }
