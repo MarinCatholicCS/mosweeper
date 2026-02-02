@@ -41,16 +41,7 @@ LeaderboardManager.prototype.validateSubmission = function (name, time) {
 // Submit a score to the leaderboard
 LeaderboardManager.prototype.submitScore = function (name, time, now, startTime, timeStamps, mines, callback) {
     var self = this;
-    console.log((now - startTime) / 1000);
-    console.log(JSON.stringify({
-        name: name,
-        time: time,
-        timestamp: now,
-        startTime,
-        timeStamps,
-        mines: mines
-    }));
-    console.log(timeStamps.length);
+
     // Validate before submitting
     var validation = this.validateSubmission(name, time);
     if (!validation.valid) {
