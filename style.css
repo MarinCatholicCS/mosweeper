@@ -139,6 +139,8 @@ h1 {
     font-size: 28px;
     font-weight: 600;
     color: var(--accent-primary);
+    min-width: 80px;
+    text-align: center;
 }
 
 .reset-btn {

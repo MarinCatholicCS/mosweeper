@@ -57,6 +57,7 @@ LeaderboardManager.prototype.submitScore = function (name, time, now, startTime,
     }
     this.recentSubmissions[name].push(Date.now());
 
+
     fetch(this.scriptUrl, {
         method: 'POST',
         mode: 'no-cors', // Required for Google Apps Script
@@ -265,6 +266,7 @@ LeaderboardManager.prototype.updatePermanentLeaderboard = function () {
             if (index === 0) medal = '🥇';
             else if (index === 1) medal = '🥈';
             else if (index === 2) medal = '🥉';
+
 
             // Format the timestamp
             var formattedDate = '';
