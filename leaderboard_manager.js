@@ -182,7 +182,7 @@ LeaderboardManager.prototype.showGameOverModal = function (won, finalTime, now, 
                 } else {
                     hasSubmitted = true;
                     messageEl.textContent = 'Score submitted successfully!';
-                    messageEl.style.color = '#a68a5c';
+                    messageEl.style.color = '#a5e36f';
 
                     // Reload permanent leaderboard
                     setTimeout(function () {
