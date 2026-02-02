@@ -33,7 +33,6 @@ body {
     color: var(--text-primary);
     padding: 20px;
     position: relative;
-
 }
 
 body::before {
@@ -65,7 +64,7 @@ body::before {
 .container {
     position: relative;
     z-index: 1;
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     animation: fadeIn 0.6s ease-out;
 }
@@ -84,23 +83,23 @@ body::before {
 
 header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 h1 {
-    font-size: 64px;
+    font-size: 56px;
     font-weight: 700;
     font-family: 'Amiri', serif;
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     letter-spacing: -1px;
 }
 
 .subtitle {
-    font-size: 18px;
+    font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--text-secondary);
@@ -112,10 +111,10 @@ h1 {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     background: var(--bg-tertiary);
-    padding: 20px 24px;
-    border-radius: 16px;
+    padding: 16px 20px;
+    border-radius: 14px;
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(107, 78, 49, 0.2);
 }
@@ -128,7 +127,7 @@ h1 {
 }
 
 .label {
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text-secondary);
@@ -137,7 +136,7 @@ h1 {
 
 .value {
     font-family: 'Markazi Text', serif;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
     color: var(--accent-primary);
 }
@@ -145,9 +144,9 @@ h1 {
 .reset-btn {
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
     border: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,11 +167,11 @@ h1 {
 
 .board {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    gap: 4px;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 3px;
     background: var(--bg-secondary);
-    padding: 12px;
-    border-radius: 16px;
+    padding: 10px;
+    border-radius: 14px;
     box-shadow: var(--shadow-lg);
     border: 1px solid rgba(107, 78, 49, 0.2);
 }
@@ -181,12 +180,12 @@ h1 {
     aspect-ratio: 1;
     background: var(--cell-bg);
     border: 1px solid var(--cell-border);
-    border-radius: 6px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Markazi Text', serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -245,7 +244,7 @@ h1 {
     background-image: url('mosweeper.jpeg');
     background-size: cover;
     background-position: center;
-    border-radius: 6px;
+    border-radius: 4px;
     animation: flag 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -270,7 +269,7 @@ h1 {
 
 .cell.mine::before {
     content: '💣';
-    font-size: 18px;
+    font-size: 16px;
 }
 
 @keyframes explode {
@@ -366,8 +365,8 @@ h1 {
 }
 
 .game-over-icon {
-    font-size: 100px;
-    margin-bottom: 24px;
+    font-size: 90px;
+    margin-bottom: 20px;
     animation: bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -384,9 +383,9 @@ h1 {
 }
 
 #game-over-title {
-    font-size: 64px;
+    font-size: 56px;
     font-weight: 700;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     font-family: 'Amiri', serif;
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
     -webkit-background-clip: text;
@@ -396,9 +395,9 @@ h1 {
 
 .final-time {
     font-family: 'Markazi Text', serif;
-    font-size: 42px;
+    font-size: 36px;
     color: var(--accent-primary);
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     font-weight: 600;
 }
 
@@ -406,10 +405,10 @@ h1 {
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
     color: var(--bg-primary);
     border: none;
-    padding: 16px 48px;
-    font-size: 20px;
+    padding: 14px 42px;
+    font-size: 18px;
     font-weight: 600;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 16px rgba(139, 111, 71, 0.3);
@@ -571,7 +570,7 @@ h1 {
 
 /* Permanent Leaderboard at Bottom */
 .permanent-leaderboard {
-    max-width: 600px;
+    max-width: 700px;
     margin: 40px auto 20px;
     background: #b89968;
     padding: 24px;
@@ -711,26 +710,91 @@ h1 {
     font-size: 18px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+
     h1 {
         font-size: 48px;
     }
 
     .game-info {
-        padding: 16px 20px;
+        padding: 14px 18px;
     }
 
     .value {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .board {
-        gap: 3px;
-        padding: 10px;
+        gap: 2px;
+        padding: 8px;
     }
 
     .cell {
-        font-size: 20px;
-        border-radius: 4px;
+        font-size: 16px;
+        border-radius: 3px;
+    }
+
+    .cell.mine::before {
+        font-size: 14px;
+    }
+
+    .permanent-leaderboard {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 640px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .game-info {
+        padding: 12px 16px;
+    }
+
+    .value {
+        font-size: 22px;
+    }
+
+    .reset-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .board {
+        gap: 2px;
+        padding: 6px;
+    }
+
+    .cell {
+        font-size: 14px;
+        border-radius: 2px;
+    }
+
+    .cell.mine::before {
+        font-size: 12px;
+    }
+
+    #game-over-title {
+        font-size: 42px;
+    }
+
+    .final-time {
+        font-size: 28px;
+    }
+
+    .permanent-leaderboard {
+        padding: 18px;
+    }
+
+    .permanent-leaderboard h3 {
+        font-size: 28px;
     }
 }
