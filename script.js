@@ -1,7 +1,7 @@
 // Game configuration
 const ROWS = 14;
 const COLS = 18;
-const MINES = 5;
+const MINES = 40;
 
 const API_URL = 'https://script.google.com/macros/s/AKfycbxGmBC7asHnpngfgSwQqtxig3notnM4CxTBhTQlUh5duSOHidgBKPSnvCg4ha0oC71GrQ/exec';
 
