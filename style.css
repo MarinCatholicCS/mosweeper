@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Markazi+Text:wght@400;500;600;700&display=swap');
 
 :root {
     --bg-primary: #d4b896;
@@ -24,7 +24,7 @@
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Markazi Text', serif;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     min-height: 100vh;
     display: flex;
@@ -33,7 +33,7 @@ body {
     color: var(--text-primary);
     padding: 20px;
     position: relative;
-    overflow: hidden;
+
 }
 
 body::before {
@@ -88,8 +88,9 @@ header {
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 64px;
     font-weight: 700;
+    font-family: 'Amiri', serif;
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -99,7 +100,7 @@ h1 {
 }
 
 .subtitle {
-    font-size: 14px;
+    font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--text-secondary);
@@ -127,7 +128,7 @@ h1 {
 }
 
 .label {
-    font-size: 11px;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text-secondary);
@@ -135,8 +136,8 @@ h1 {
 }
 
 .value {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 24px;
+    font-family: 'Markazi Text', serif;
+    font-size: 32px;
     font-weight: 600;
     color: var(--accent-primary);
 }
@@ -184,8 +185,8 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
+    font-family: 'Markazi Text', serif;
+    font-size: 24px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -237,9 +238,14 @@ h1 {
 }
 
 .cell.flagged::before {
-    content: '🚩';
-    font-size: 18px;
-    background-image: url(mosweeper.jpeg);
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('mosweeper.jpeg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
     animation: flag 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -360,7 +366,7 @@ h1 {
 }
 
 .game-over-icon {
-    font-size: 80px;
+    font-size: 100px;
     margin-bottom: 24px;
     animation: bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -378,9 +384,10 @@ h1 {
 }
 
 #game-over-title {
-    font-size: 48px;
+    font-size: 64px;
     font-weight: 700;
     margin-bottom: 16px;
+    font-family: 'Amiri', serif;
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -388,8 +395,8 @@ h1 {
 }
 
 .final-time {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 32px;
+    font-family: 'Markazi Text', serif;
+    font-size: 42px;
     color: var(--accent-primary);
     margin-bottom: 32px;
     font-weight: 600;
@@ -400,7 +407,7 @@ h1 {
     color: var(--bg-primary);
     border: none;
     padding: 16px 48px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     border-radius: 12px;
     cursor: pointer;
@@ -419,9 +426,294 @@ h1 {
     transform: scale(0.98);
 }
 
+/* Leaderboard Modal Styles */
+.leaderboard-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.leaderboard-modal {
+    background: #e8d4b8;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(107, 78, 49, 0.2);
+}
+
+.leaderboard-modal-simple {
+    max-width: 400px;
+    text-align: center;
+}
+
+.leaderboard-modal h2 {
+    color: #3d2a1a;
+    font-family: 'Amiri', serif;
+    font-size: 48px;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.leaderboard-modal h3 {
+    color: #6b4e31;
+    font-size: 24px;
+    margin: 20px 0 15px 0;
+}
+
+.final-score {
+    text-align: center;
+    font-size: 20px;
+    color: #6b4e31;
+    margin-bottom: 30px;
+}
+
+.final-score strong {
+    color: #8b6f47;
+    font-size: 36px;
+    font-family: 'Markazi Text', serif;
+    display: block;
+    margin-top: 10px;
+}
+
+.submit-score-section {
+    background: #b89968;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#player-name {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    font-family: 'Markazi Text', serif;
+    border: 2px solid #8b6f47;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #f5e6d3;
+    color: #3d2a1a;
+}
+
+#player-name:focus {
+    outline: none;
+    border-color: #6b4e31;
+    box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.2);
+}
+
+#submit-score-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #f5e6d3;
+    background: linear-gradient(135deg, #8b6f47 0%, #a68a5c 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(139, 111, 71, 0.3);
+}
+
+#submit-score-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px rgba(139, 111, 71, 0.5);
+}
+
+#submit-score-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.submit-message {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    min-height: 20px;
+}
+
+.close-modal-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #f5e6d3;
+    background: #6b4e31;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close-modal-btn:hover {
+    background: #8b6f47;
+}
+
+.error {
+    color: #c94a3a;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Permanent Leaderboard at Bottom */
+.permanent-leaderboard {
+    max-width: 600px;
+    margin: 40px auto 20px;
+    background: #b89968;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(107, 78, 49, 0.2);
+}
+
+.permanent-leaderboard h3 {
+    color: #3d2a1a;
+    font-family: 'Amiri', serif;
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+#permanent-leaderboard-list {
+    min-height: 60px;
+    margin-bottom: 15px;
+}
+
+.permanent-leaderboard-entries {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.permanent-leaderboard-entries li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: #e8d4b8;
+    border-radius: 8px;
+    font-size: 18px;
+    border: 1px solid rgba(139, 111, 71, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.permanent-leaderboard-entries li:hover {
+    transform: translateX(4px);
+}
+
+.permanent-leaderboard-entries li:nth-child(1) {
+    background: linear-gradient(135deg, #d4a574 0%, #c9984a 100%);
+    color: #3d2a1a;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+}
+
+.permanent-leaderboard-entries li:nth-child(2) {
+    background: #c9c9c9;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.permanent-leaderboard-entries li:nth-child(3) {
+    background: #cd7f32;
+    color: #f5e6d3;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.permanent-leaderboard-entries .rank {
+    width: 35px;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.permanent-leaderboard-entries .player-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.permanent-leaderboard-entries .player-name {
+    color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    font-family: 'Markazi Text', serif;
+}
+
+.permanent-leaderboard-entries .player-timestamp {
+    font-size: 14px;
+    color: rgba(61, 42, 26, 0.6);
+    margin-top: 2px;
+}
+
+.permanent-leaderboard-entries li:nth-child(3) .player-timestamp {
+    color: rgba(245, 230, 211, 0.8);
+}
+
+.permanent-leaderboard-entries .player-score {
+    font-weight: bold;
+    font-family: 'Markazi Text', serif;
+    color: inherit;
+    flex-shrink: 0;
+    font-size: 22px;
+}
+
+.leaderboard-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.refresh-btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e6d3;
+    background: linear-gradient(135deg, #8b6f47 0%, #a68a5c 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(139, 111, 71, 0.3);
+}
+
+.refresh-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px rgba(139, 111, 71, 0.5);
+}
+
+.empty-state {
+    text-align: center;
+    color: #6b4e31;
+    padding: 20px;
+    font-style: italic;
+    font-size: 18px;
+}
+
 @media (max-width: 640px) {
     h1 {
-        font-size: 36px;
+        font-size: 48px;
     }
 
     .game-info {
@@ -429,7 +721,7 @@ h1 {
     }
 
     .value {
-        font-size: 20px;
+        font-size: 28px;
     }
 
     .board {
@@ -438,7 +730,7 @@ h1 {
     }
 
     .cell {
-        font-size: 16px;
+        font-size: 20px;
         border-radius: 4px;
     }
 }

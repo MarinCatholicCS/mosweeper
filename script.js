@@ -1,7 +1,15 @@
 // Game configuration
 const ROWS = 9;
 const COLS = 9;
-const MINES = 10;
+const MINES = 4;
+
+const API_URL = 'https://script.google.com/macros/s/AKfycbxGmBC7asHnpngfgSwQqtxig3notnM4CxTBhTQlUh5duSOHidgBKPSnvCg4ha0oC71GrQ/exec';
+
+// Initialize Leaderboard Manager
+let leaderboardManager;
+if (API_URL && API_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    leaderboardManager = new LeaderboardManager(API_URL);
+}
 
 // Game state
 let board = [];
@@ -262,7 +270,7 @@ function endGame(won) {
         clearInterval(timerInterval);
     }
 
-    const finalTime = ((Date.now() - startTime) / 1000).toFixed(2);
+    const finalTime = ((Date.now() - startTime) / 1000);
 
     // Reveal all mines
     for (let row = 0; row < ROWS; row++) {
@@ -281,25 +289,22 @@ function endGame(won) {
         }
     }
 
-    // Show game over overlay
+    // Show game over overlay briefly, then modal
     setTimeout(() => {
-        if (won) {
-            gameOverIcon.textContent = '🎉';
-            gameOverTitle.textContent = 'Victory!';
-            finalTimeElement.textContent = `${finalTime}s`;
-        } else {
-            gameOverIcon.textContent = '💥';
-            gameOverTitle.textContent = 'Game Over';
-            finalTimeElement.textContent = 'Try Again';
+        if (leaderboardManager) {
+            leaderboardManager.showGameOverModal(won, finalTime);
         }
-
-        gameOverOverlay.classList.add('show');
-    }, 500);
+    }, 300);
 }
 
 // Event listeners
 resetBtn.addEventListener('click', initGame);
-playAgainBtn.addEventListener('click', initGame);
+//playAgainBtn.addEventListener('click', initGame);
 
 // Initialize game on load
 initGame();
+
+// Initialize permanent leaderboard if API is configured
+if (leaderboardManager) {
+    leaderboardManager.createPermanentLeaderboard();
+}
