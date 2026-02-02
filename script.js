@@ -142,7 +142,7 @@ function renderBoard() {
             cell.dataset.col = col;
 
             // Add staggered animation delay
-            cell.style.animationDelay = `${(row * COLS + col) * 0.01}s`;
+            cell.style.animationDelay = `${(row * COLS + col) * 0.001}s`;
 
             cell.addEventListener('click', () => handleCellClick(row, col));
             cell.addEventListener('contextmenu', (e) => handleRightClick(e, row, col));
