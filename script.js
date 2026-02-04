@@ -27,9 +27,7 @@ const boardElement = document.getElementById('board');
 const mineCountElement = document.getElementById('mine-count');
 const timerElement = document.getElementById('timer');
 const resetBtn = document.getElementById('reset-btn');
-const gameOverOverlay = document.getElementById('game-over-overlay');
-const gameOverIcon = document.getElementById('game-over-icon');
-const gameOverTitle = document.getElementById('game-over-title');
+
 const finalTimeElement = document.getElementById('final-time');
 const playAgainBtn = document.getElementById('play-again-btn');
 
@@ -51,7 +49,7 @@ function initGame() {
 
     timerElement.textContent = '0.00';
     mineCountElement.textContent = MINES;
-    gameOverOverlay.classList.remove('show');
+    //gameOverOverlay.classList.remove('show');
 
     createBoard();
     renderBoard();
@@ -305,7 +303,12 @@ function endGame(won) {
 
 // Event listeners
 resetBtn.addEventListener('click', initGame);
-//playAgainBtn.addEventListener('click', initGame);
+document.addEventListener('keydown', (e) => {
+    if (e.key === "r" || e.key === "R") {
+        initGame();
+    }
+})
+
 
 // Initialize game on load
 initGame();
