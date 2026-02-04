@@ -181,6 +181,12 @@ function handleCellClick(row, col) {
 
     const cell = board[row][col];
 
+    // If cell is revealed with a number, try chord (auto-reveal neighbors)
+    if (cell.isRevealed && cell.neighborMines > 0) {
+        chordCell(row, col);
+        return;
+    }
+
     if (cell.isFlagged || cell.isRevealed) return;
 
     // Start game on first click
@@ -191,6 +197,75 @@ function handleCellClick(row, col) {
     }
 
     revealCell(row, col);
+}
+
+// Chord function: auto-reveal neighbors if flags match the number
+function chordCell(row, col) {
+    const cell = board[row][col];
+
+    if (!cell.isRevealed || cell.neighborMines === 0) return;
+
+    // Count neighboring flags
+    let flagCount = 0;
+    const neighbors = [];
+
+    for (let dRow = -1; dRow <= 1; dRow++) {
+        for (let dCol = -1; dCol <= 1; dCol++) {
+            if (dRow === 0 && dCol === 0) continue;
+
+            const newRow = row + dRow;
+            const newCol = col + dCol;
+
+            if (isValidCell(newRow, newCol)) {
+                const neighborCell = board[newRow][newCol];
+                neighbors.push({ row: newRow, col: newCol });
+
+                if (neighborCell.isFlagged) {
+                    flagCount++;
+                }
+            }
+        }
+    }
+
+    // Only chord if flag count matches the number
+    if (flagCount === cell.neighborMines) {
+        // Check if any flags are incorrect (on non-mine cells)
+        let hasIncorrectFlag = false;
+
+        for (let dRow = -1; dRow <= 1; dRow++) {
+            for (let dCol = -1; dCol <= 1; dCol++) {
+                if (dRow === 0 && dCol === 0) continue;
+
+                const newRow = row + dRow;
+                const newCol = col + dCol;
+
+                if (isValidCell(newRow, newCol)) {
+                    const neighborCell = board[newRow][newCol];
+
+                    // If flagged but not a mine, game over
+                    if (neighborCell.isFlagged && !neighborCell.isMine) {
+                        hasIncorrectFlag = true;
+                        break;
+                    }
+                }
+            }
+            if (hasIncorrectFlag) break;
+        }
+
+        if (hasIncorrectFlag) {
+            // End game - incorrect flag
+            endGame(false);
+            return;
+        }
+
+        // Reveal all non-flagged neighbors
+        for (const neighbor of neighbors) {
+            const neighborCell = board[neighbor.row][neighbor.col];
+            if (!neighborCell.isFlagged && !neighborCell.isRevealed) {
+                revealCell(neighbor.row, neighbor.col);
+            }
+        }
+    }
 }
 
 // Handle right click (flag)
