@@ -1,7 +1,7 @@
 function LeaderboardManager(scriptUrl) {
     this.scriptUrl = scriptUrl;
     this.recentSubmissions = {}; // Track recent submissions by name
-    this.currentView = 'daily'; // 'daily' or 'alltime'
+    this.currentView = 'alltime'; // 'daily' or 'alltime'
 }
 
 // Client-side validation
